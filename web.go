@@ -19,6 +19,10 @@ func main() {
 	tr := &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}}
 	insecureClient := &http.Client{Transport: tr}
 
+	m.Get("/", func(res http.ResponseWriter, req *http.Request) {
+		http.Redirect(res, req, "https://github.com/fiatjaf/temperaas/blob/master/README.md", 302)
+	})
+
 	m.Get("/**", func(params martini.Params, res http.ResponseWriter, req *http.Request) {
 		qs := req.URL.Query()
 		log.Print(params["_1"])
