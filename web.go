@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"github.com/go-martini/martini"
 	"github.com/hoisie/mustache"
+	"github.com/martini-contrib/cors"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -14,6 +15,12 @@ import (
 
 func main() {
 	m := martini.Classic()
+
+	m.Use(cors.Allow(&cors.Options{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{"GET"},
+		AllowHeaders: []string{"Origin", "Accept", "X-Requested-With"},
+	}))
 
 	// custom http insecure client
 	tr := &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}}
