@@ -27,7 +27,7 @@ func main() {
 	insecureClient := &http.Client{Transport: tr}
 
 	m.Get("/", func(res http.ResponseWriter, req *http.Request) {
-		http.Redirect(res, req, "https://github.com/fiatjaf/temperaas/blob/master/README.md", 302)
+		http.Redirect(res, req, "https://github.com/fiatjaf/temperos/blob/master/README.md", 302)
 	})
 
 	m.Get("/**", func(params martini.Params, res http.ResponseWriter, req *http.Request) {
